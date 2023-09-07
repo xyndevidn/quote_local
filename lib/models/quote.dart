@@ -1,22 +1,17 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'quote.g.dart';
 
-@JsonSerializable()
-class Quote {
-  final String id;
-  final String en;
-  final String author;
-  final double rating;
+part 'quote.freezed.dart';
 
-  Quote({
-    required this.id,
-    required this.en,
-    required this.author,
-    required this.rating,
-  });
+@freezed
+class Quote with _$Quote {
+  const factory Quote({
+    required String id,
+    required String en,
+    required String author,
+    required double rating,
+  }) = _Quote;
 
   factory Quote.fromJson(Map<String, dynamic> json) => _$QuoteFromJson(json);
-
-  Map<String, dynamic> toJson() => _$QuoteToJson(this);
 }
